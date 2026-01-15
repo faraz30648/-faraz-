@@ -158,7 +158,25 @@ html { font-family: var(--ff-poppins); }
 body { background: var(--smoky-black); }
 
 
+/*-----------------------------------*\
+  #VIDEO BACKGROUND
+\*-----------------------------------*/
 
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+}
+
+#bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 
 /*-----------------------------------*\
@@ -167,7 +185,9 @@ body { background: var(--smoky-black); }
 
 .sidebar,
 article {
-  background: var(--eerie-black-2);
+  background: hsla(240, 2%, 12%, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--jet);
   border-radius: 20px;
   padding: 15px;

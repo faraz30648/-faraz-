@@ -140,15 +140,37 @@ for (let i = 0; i < formInputs.length; i++) {
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
 const pages = document.querySelectorAll("[data-page]");
 
+// Video Background Logic
+const videoElement = document.getElementById("bg-video");
+const videoSource = videoElement.querySelector("source");
+
+const pageVideos = {
+  about: "https://assets.mixkit.co/videos/preview/mixkit-ink-swirling-in-water-2180-large.mp4",
+  resume: "https://assets.mixkit.co/videos/preview/mixkit-white-abstract-lines-and-dots-in-dark-background-27201-large.mp4",
+  portfolio: "https://assets.mixkit.co/videos/preview/mixkit-stars-in-space-1610-large.mp4",
+  blog: "https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4",
+  contact: "https://assets.mixkit.co/videos/preview/mixkit-waterfall-in-forest-2213-large.mp4"
+};
+
 // add event to all nav link
 for (let i = 0; i < navigationLinks.length; i++) {
   navigationLinks[i].addEventListener("click", function () {
 
+    const selectedPage = this.innerHTML.toLowerCase();
+
     for (let i = 0; i < pages.length; i++) {
-      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
+      if (selectedPage === pages[i].dataset.page) {
         pages[i].classList.add("active");
         navigationLinks[i].classList.add("active");
         window.scrollTo(0, 0);
+
+        // Change video background
+        if (pageVideos[selectedPage]) {
+          videoSource.src = pageVideos[selectedPage];
+          videoElement.load();
+          videoElement.play();
+        }
+
       } else {
         pages[i].classList.remove("active");
         navigationLinks[i].classList.remove("active");
